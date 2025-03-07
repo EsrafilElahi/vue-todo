@@ -30,10 +30,17 @@ const todos = ref<Todo[]>([
 </script>
 
 <template>
-  <div class="text-center p-2">
+  <div class="flex-col-center gap-10 text-center p-2">
     <AppHeader title="Todo List" />
 
-    <div class="mt-10 flex items-center justify-center flex-col gap-5">
+    <div class="flex-center gap-3">
+      <button class="btn">all</button>
+      <button class="btn">low</button>
+      <button class="btn">high</button>
+      <button class="btn">done</button>
+    </div>
+
+    <div class="flex-col-center gap-5">
       <div
         v-for="todo in todos"
         :key="todo.id"
