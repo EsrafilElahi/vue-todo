@@ -63,7 +63,13 @@ const filteredTodos = computed(() => {
     all: todos.value,
   };
 
-  return filterNames[selectedFilter.value] as Todo[];
+  const completeFilteredTodos = filterNames[selectedFilter.value] || [];
+
+  const searchedFilterTodo = completeFilteredTodos.filter((todo) => {
+    return todo.title.toLowerCase().includes(searchedTodo.value.toLowerCase());
+  });
+
+  return searchedFilterTodo;
 });
 
 const handleSelectFilter = (filterName: FilterNames) => {
@@ -74,13 +80,9 @@ const onDelete = (id: number) => {
   todos.value = todos.value.filter((todo) => todo.id !== id);
 };
 
-const handleChange = (value) => {
-  console.log("value :", value);
-};
-
-watch(searchedTodo, () => {
-  console.log("searchedTodo :", searchedTodo.value);
-});
+// const handleChange = (value) => {
+//   console.log("value :", value);
+// };
 </script>
 
 <template>
