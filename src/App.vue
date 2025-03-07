@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <nav>
-    <RouterLink :to="{ name: 'home' }">Home</RouterLink> |
+    <RouterLink :to="{ name: 'notFound' }">notFound</RouterLink> |
     <RouterLink :to="{ name: 'todos' }">todos</RouterLink>
   </nav>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { RouterLink } from 'vue-router'
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
@@ -8,6 +8,6 @@
       Not Found Page
     </div>
 
-    <RouterLink to="/todos" />
+    <RouterLink to="/todos"> go home</RouterLink>
   </div>
 </template>
