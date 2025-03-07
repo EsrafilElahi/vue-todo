@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, useAttrs, watch } from "vue";
 import AppHeader from "../components/AppHeader.vue";
 import type { Todo, FilterNames } from "../types/allTypes.ts";
 import TodoItem from "../components/TodoItem.vue";
 import FilterTodos from "../components/FilterTodos.vue";
+import SearchTodos from "../components/SearchTodos.vue";
 
 const todos = ref<Todo[]>([
   {
@@ -50,6 +51,8 @@ const todos = ref<Todo[]>([
   },
 ]);
 
+const searchedTodo = ref<string>("");
+
 const selectedFilter = ref<FilterNames>("all");
 
 const filteredTodos = computed(() => {
@@ -70,11 +73,22 @@ const handleSelectFilter = (filterName: FilterNames) => {
 const onDelete = (id: number) => {
   todos.value = todos.value.filter((todo) => todo.id !== id);
 };
+
+const handleChange = (value) => {
+  console.log("value :", value);
+};
+
+watch(searchedTodo, () => {
+  console.log("searchedTodo :", searchedTodo.value);
+});
 </script>
 
 <template>
   <div class="flex-col-center gap-10 text-center p-2">
     <AppHeader title="Todo List" />
+
+    <!-- <SearchTodos label="Username" id="username" :handleChange="handleChange" /> -->
+    <SearchTodos label="Username" id="username" v-model="searchedTodo" />
 
     <FilterTodos @handleSelectFilter="handleSelectFilter" />
 
