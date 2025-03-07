@@ -9,7 +9,6 @@ const props = withDefaults(defineProps<Prop>(), {
   title: "Default Title",
 });
 
-console.log(props);
 </script>
 
 <template>

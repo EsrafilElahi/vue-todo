@@ -4,3 +4,5 @@ export interface Todo {
   priority: "low" | "mid" | "high";
   done: boolean;
 }
+
+export type FilterNames = 'all' | 'low' | 'high' | 'done'

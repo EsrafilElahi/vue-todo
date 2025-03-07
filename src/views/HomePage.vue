@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import AppHeader from "../components/AppHeader.vue";
-import type { Todo } from "../types/allTypes.ts";
+import type { Todo, FilterNames } from "../types/allTypes.ts";
 import TodoItem from "../components/TodoItem.vue";
 
 const todos = ref<Todo[]>([
@@ -26,7 +26,45 @@ const todos = ref<Todo[]>([
     priority: "high",
     done: false,
   },
+  {
+    id: 4,
+    title: "todo 4",
+    description: "description 4",
+    priority: "high",
+    done: true,
+  },
+  {
+    id: 5,
+    title: "todo 5",
+    description: "description 5",
+    priority: "low",
+    done: false,
+  },
+  {
+    id: 6,
+    title: "todo 6",
+    description: "description 6",
+    priority: "low",
+    done: false,
+  },
 ]);
+
+const selectedFilter = ref<FilterNames>("all");
+
+const filteredTodos = computed(() => {
+  const filterNames: Record<FilterNames, Todo[]> = {
+    low: todos.value.filter((todo) => todo.priority === "low"),
+    high: todos.value.filter((todo) => todo.priority === "high"),
+    done: todos.value.filter((todo) => todo.done),
+    all: todos.value,
+  };
+
+  return filterNames[selectedFilter.value] as Todo[];
+});
+
+const handleSelectFilter = (filterName: FilterNames) => {
+  selectedFilter.value = filterName;
+};
 </script>
 
 <template>
@@ -34,15 +72,16 @@ const todos = ref<Todo[]>([
     <AppHeader title="Todo List" />
 
     <div class="flex-center gap-3">
-      <button class="btn">all</button>
-      <button class="btn">low</button>
-      <button class="btn">high</button>
-      <button class="btn">done</button>
+      <button class="btn" @click="handleSelectFilter('all')">All</button>
+      <button class="btn" @click="handleSelectFilter('low')">Low</button>
+      <button class="btn" @click="handleSelectFilter('high')">High</button>
+      <button class="btn" @click="handleSelectFilter('done')">Done</button>
     </div>
 
     <div class="flex-col-center gap-5">
       <div
-        v-for="todo in todos"
+        v-if="filteredTodos.length"
+        v-for="todo in filteredTodos"
         :key="todo.id"
         class="w-[25rem] border border-primary-200 rounded-md p-3 cursor-pointer"
       >
