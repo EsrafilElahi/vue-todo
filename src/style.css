@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -33,6 +34,19 @@ body {
 
   &:hover {
     color: rgb(96, 200, 200);
+  }
+}
+
+
+@layer components {
+  .btn {
+    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+  }
+}
+
+@layer utilities {
+  .flex-all {
+    @apply flex justify-center items-center gap-3
   }
 }
 
