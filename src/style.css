@@ -12,3 +12,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@theme {
+  --color-primary-100: #c5e1f5;
+  --color-primary-200: #87ceeb;
+  --color-primary-300: #3498db;
+  --color-secondary-100: #f7d2c4;
+  --color-secondary-200: #e67e73;
+  --color-secondary-300: #e74c3c;
+  --color-gray-100: #d3d3d3;
+  --color-gray-200: #999999;
+  --color-gray-300: #666666;
+  --color-accent-100: #ffe6cc;
+  --color-accent-200: #ffd7a3;
+  --color-accent-300: #ffa07a;
+}
