@@ -10,26 +10,28 @@ interface BaseInputProps {
   modelValue: string;
 }
 
-export interface TypeEmit {
-  (e: "update:modelValue", value: string): void;
-}
+const model = defineModel();
 
-const model = defineModel()
-
-const props = defineProps<BaseInputProps>();
-
-const emit = defineEmits<TypeEmit>();
+// const props = defineProps<BaseInputProps>();
+// const emit = defineEmits<TypeEmit>();
 </script>
 
 <template>
   <div>
     <label :for="id">{{ label }}</label>
-    <input
+    <!-- <input
       v-bind="$attrs"
       :id="id"
       class="border rounded p-2 ml-3"
       :value="modelValue"
       @input="(e) => emit('update:modelValue', e.target.value)"
+    /> -->
+
+    <input
+      v-bind="$attrs"
+      :id="id"
+      class="border rounded p-2 ml-3"
+      v-model="model"
     />
   </div>
 </template>
