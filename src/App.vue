@@ -1,17 +1,12 @@
 <script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold text-secondary-100 underline">
-    Hello world!
-  </h1>
-  <h1 class="text-3xl font-bold text-secondary-200 underline">
-    Hello world!
-  </h1>
+  <nav>
+    <RouterLink :to="{ name: 'home' }">Home</RouterLink> |
+    <RouterLink :to="{ name: 'todos' }">todos</RouterLink>
+  </nav>
 
-  <h1 class="text-3xl font-bold text-secondary-300 underline">
-    Hello world!
-  </h1>
+  <RouterView />
 </template>
-
-<style scoped></style>

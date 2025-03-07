@@ -1,9 +1,8 @@
-<script setup>
-
+<script setup lang="ts">
 </script>
 
 <template>
   <div>
-    Home Page
+    Home Page (todos)
   </div>
 </template>
