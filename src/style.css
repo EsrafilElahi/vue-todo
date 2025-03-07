@@ -13,6 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  min-height: 100vh;
+}
+#app {
+  min-height: 100vh;
+}
+
 @theme {
   --color-primary-100: #c5e1f5;
   --color-primary-200: #87ceeb;
