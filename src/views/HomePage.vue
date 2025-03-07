@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 import AppHeader from "../components/AppHeader.vue";
 import type { Todo, FilterNames } from "../types/allTypes.ts";
 import TodoItem from "../components/TodoItem.vue";
+import FilterTodos from "../components/FilterTodos.vue";
 
 const todos = ref<Todo[]>([
   {
@@ -65,18 +66,17 @@ const filteredTodos = computed(() => {
 const handleSelectFilter = (filterName: FilterNames) => {
   selectedFilter.value = filterName;
 };
+
+const onDelete = (id: number) => {
+  todos.value = todos.value.filter((todo) => todo.id !== id);
+};
 </script>
 
 <template>
   <div class="flex-col-center gap-10 text-center p-2">
     <AppHeader title="Todo List" />
 
-    <div class="flex-center gap-3">
-      <button class="btn" @click="handleSelectFilter('all')">All</button>
-      <button class="btn" @click="handleSelectFilter('low')">Low</button>
-      <button class="btn" @click="handleSelectFilter('high')">High</button>
-      <button class="btn" @click="handleSelectFilter('done')">Done</button>
-    </div>
+    <FilterTodos @handleSelectFilter="handleSelectFilter" />
 
     <div class="flex-col-center gap-5">
       <div
@@ -85,7 +85,7 @@ const handleSelectFilter = (filterName: FilterNames) => {
         :key="todo.id"
         class="w-[25rem] border border-primary-200 rounded-md p-3 cursor-pointer"
       >
-        <TodoItem :todo="todo" />
+        <TodoItem :todo="todo" @onDelete="onDelete" />
       </div>
     </div>
   </div>
