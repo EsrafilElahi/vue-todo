@@ -17,12 +17,23 @@ body {
   min-height: 100vh;
   font-family: "Roboto Condensed", sans-serif;
   font-optical-sizing: auto;
-  /* font-weight: <weight>; */
   font-style: normal;
 }
 
 #app {
   min-height: 100vh;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  color: #222;
+  cursor: pointer;
+  transition: all ease-in-out .1s;
+
+  &:hover {
+    color: rgb(96, 200, 200);
+  }
 }
 
 @theme {

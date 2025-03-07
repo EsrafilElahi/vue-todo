@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { withDefaults, defineProps } from "vue";
 
-const props = defineProps({
-  title: {
-    required: true,
-    type: String,
-    default: "",
-  },
+interface Prop {
+  title: string;
+}
+
+const props = withDefaults(defineProps<Prop>(), {
+  title: "Default Title",
 });
 
 console.log(props);
