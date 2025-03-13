@@ -1,16 +1,20 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
+
 
 import HomePage from '../views/HomePage.vue';
-import NotFoundPage from '../views/NotFoundPage.vue'
+import EditTodoPage from '../views/EditTodoPage.vue';
+// import NotFoundPage from '../views/NotFoundPage.vue'
 
-const routes = [
+const routes: Array<RouteRecordRaw> = [
   { path: '/', name: 'home', component: HomePage },
   { path: '/todos', name: 'todos', component: HomePage },
-  { path: '/:pathMatch(.*)*', name: 'notFound', component: NotFoundPage },
+  { path: '/todos/edit/:todoId', name: 'todo.edit', component: EditTodoPage },
+  { path: '/:pathMatch(.*)*', name: 'notFound', component: () => import('../views/NotFoundPage.vue') },
 ]
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });
 
