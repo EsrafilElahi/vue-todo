@@ -3,13 +3,14 @@ import type { RouteRecordRaw } from 'vue-router'
 
 
 import HomePage from '../views/HomePage.vue';
-import EditTodoPage from '../views/EditTodoPage.vue';
+import AddViewEditTodoPage from '../views/AddViewEditTodoPage.vue';
 // import NotFoundPage from '../views/NotFoundPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', name: 'home', component: HomePage },
   { path: '/todos', name: 'todos', component: HomePage },
-  { path: '/todos/edit/:todoId', name: 'todo.edit', component: EditTodoPage },
+  { path: '/todos/edit/:todoId', name: 'todo.edit', component: AddViewEditTodoPage },
+  { path: '/todos/create', name: 'todo.create', component: AddViewEditTodoPage },
   { path: '/:pathMatch(.*)*', name: 'notFound', component: () => import('../views/NotFoundPage.vue') },
 ]
 
