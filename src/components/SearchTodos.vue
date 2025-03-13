@@ -12,7 +12,7 @@ interface BaseInputProps {
 
 const model = defineModel();
 
-// const props = defineProps<BaseInputProps>();
+const props = defineProps<BaseInputProps>();
 // const emit = defineEmits<TypeEmit>();
 </script>
 
