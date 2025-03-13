@@ -87,7 +87,7 @@ const onDelete = (id: number) => {
 
 <template>
   <div class="flex-col-center gap-10 text-center p-2">
-    <AppHeader title="Todo List App Vuejs" />
+    <AppHeader title="Vuejs Todo List App" />
 
     <!-- <SearchTodos label="Username" id="username" :handleChange="handleChange" /> -->
     <SearchTodos label="Username" id="username" v-model="searchedTodo" />
