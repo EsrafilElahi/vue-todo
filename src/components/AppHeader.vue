@@ -5,7 +5,7 @@ interface Prop {
   title: string;
 }
 
-const props = withDefaults(defineProps<Prop>(), {
+withDefaults(defineProps<Prop>(), {
   title: "Default Title",
 });
 
