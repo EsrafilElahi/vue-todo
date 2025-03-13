@@ -6,7 +6,7 @@ import TodoItem from "../components/TodoItem.vue";
 import FilterTodos from "../components/FilterTodos.vue";
 import SearchTodos from "../components/SearchTodos.vue";
 import AppFooter from "../components/AppFooter.vue";
-import { useRouter } from "vue-router";
+import { useRouter, type RouteLocationNamedRaw } from "vue-router";
 
 const router = useRouter();
 
@@ -96,7 +96,15 @@ const onDelete = (id: number) => {
     <!-- <SearchTodos label="Username" id="username" :handleChange="handleChange" /> -->
     <SearchTodos label="Username" id="username" v-model="searchedTodo" />
 
-    <button class="btn w-[15rem]" @click="router.push({ name: 'todo.create' })">
+    <button
+      class="btn w-[15rem]"
+      @click="
+        router.push({
+          name: 'todo.create',
+          query: { from: 'create' },
+        } as RouteLocationNamedRaw)
+      "
+    >
       create todo
     </button>
 

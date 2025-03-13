@@ -14,7 +14,15 @@ const emit = defineEmits(["onDelete", "onEdit"]);
 </script>
 
 <template>
-  <div class="flex justify-between items-center">
+  <div
+    class="flex justify-between items-center"
+    @click="
+      router.push({
+        name: 'todo.view',
+        query: { from: 'view' },
+      } as RouteLocationNamedRaw)
+    "
+  >
     <p class="text-secondary-300">{{ todo.title }}</p>
     <div class="flex gap-5">
       <input type="checkbox" v-model="todo.done" class="mr-4" />

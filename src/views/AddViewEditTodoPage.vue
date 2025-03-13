@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter, useRoute, type RouteLocationNamedRaw } from "vue-router";
 import AppHeader from "../components/AppHeader.vue";
 import type { PriorityOption } from "../types/allTypes";
 const router = useRouter();
@@ -12,6 +12,15 @@ const priorityOptions = ref<PriorityOption[]>([
   { id: 3, label: "High", value: "high" },
 ]);
 
+const queryFrom = {
+  create: "Create",
+  view: "View",
+  edit: "Edit",
+  null: "",
+};
+
+const queryFromText = queryFrom[route.query?.from] || "Unknown";
+
 const todoData = ref({
   title: "",
   priority: "",
@@ -21,7 +30,7 @@ const todoData = ref({
 
 <template>
   <div class="flex-col-center gap-10 text-center p-2 max-w-[40rem] mx-auto">
-    <AppHeader :title="`Edit Todo With TodoId ${$route.params.todoId}`" />
+    <AppHeader :title="`${queryFromText} Todo ${$route.params.todoId || ''}`" />
 
     <div class="w-full flex-col-center gap-2">
       <label for="title">title</label>
@@ -62,8 +71,13 @@ const todoData = ref({
     </div>
 
     <div class="flex-center gap-4">
-      <button class="btn">save</button>
-      <button class="btn" @click="router.back()">back</button>
+      <button class="btn">{{ route.query.from }}</button>
+      <button
+        class="btn"
+        @click="router.push({ name: 'todos' } as RouteLocationNamedRaw)"
+      >
+        back
+      </button>
       <button class="btn">cancel</button>
     </div>
   </div>
