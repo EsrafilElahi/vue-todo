@@ -7,7 +7,7 @@ import FilterTodos from "../components/FilterTodos.vue";
 import SearchTodos from "../components/SearchTodos.vue";
 import AppFooter from "../components/AppFooter.vue";
 import { useRouter, type RouteLocationNamedRaw } from "vue-router";
-import { getTodos } from "../api/todosApi.ts";
+import { getTodos, deleteTodo } from "../api/todosApi.ts";
 
 const router = useRouter();
 
@@ -38,8 +38,12 @@ const handleSelectFilter = (filterName: FilterNames) => {
   selectedFilter.value = filterName;
 };
 
-const onDelete = (id: number) => {
-  todos.value = todos.value.filter((todo) => todo.id !== id);
+const onDelete = async (id: any) => {
+  console.log("id :", id);
+  const delted = await deleteTodo(id);
+  console.log("delted :", delted);
+  await getTodos();
+  return delted;
 };
 
 onMounted(async () => {

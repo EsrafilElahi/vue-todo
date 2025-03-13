@@ -2,7 +2,10 @@ import axios from 'axios';
 import type { Todo } from '../types/allTypes';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'http://localhost:3000',
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
 export const getTodos = async () => {
