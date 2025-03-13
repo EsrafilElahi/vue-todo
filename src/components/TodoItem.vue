@@ -16,7 +16,7 @@ const emit = defineEmits(["onDelete", "onEdit"]);
 <template>
   <div
     class="flex justify-between items-center"
-    @click="
+    @click.self.prevent="
       router.push({
         name: 'todo.view',
         query: { from: 'view' },
@@ -28,7 +28,7 @@ const emit = defineEmits(["onDelete", "onEdit"]);
       <input type="checkbox" v-model="todo.done" class="mr-4" />
       <PencilIcon
         class="icon"
-        @click="
+        @click.stop="
           router.push({
             name: 'todo.edit',
             params: { todoId: todo.id },
@@ -38,7 +38,7 @@ const emit = defineEmits(["onDelete", "onEdit"]);
       />
       <TrashIcon
         class="icon !text-secondary-300"
-        @click="emit('onDelete', todo.id)"
+        @click.stop.prevent="emit('onDelete', todo.id)"
       />
     </div>
   </div>
