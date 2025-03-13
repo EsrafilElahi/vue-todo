@@ -5,6 +5,7 @@ import type { Todo, FilterNames } from "../types/allTypes.ts";
 import TodoItem from "../components/TodoItem.vue";
 import FilterTodos from "../components/FilterTodos.vue";
 import SearchTodos from "../components/SearchTodos.vue";
+import AppFooter from "../components/AppFooter.vue";
 
 const todos = ref<Todo[]>([
   {
@@ -94,7 +95,7 @@ const onDelete = (id: number) => {
 
     <FilterTodos @handleSelectFilter="handleSelectFilter" />
 
-    <div class="flex-col-center gap-5">
+    <div class="flex-col-center h-[35rem] gap-5 overflow-auto p-4">
       <div
         v-if="filteredTodos.length"
         v-for="todo in filteredTodos"
@@ -104,6 +105,8 @@ const onDelete = (id: number) => {
         <TodoItem :todo="todo" @onDelete="onDelete" />
       </div>
     </div>
+
+    <AppFooter />
   </div>
 </template>
 <style></style>
