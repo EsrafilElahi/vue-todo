@@ -95,7 +95,9 @@ const onDelete = (id: number) => {
 
     <FilterTodos @handleSelectFilter="handleSelectFilter" />
 
-    <div class="flex-col-center h-[35rem] gap-5 overflow-auto p-4">
+    <div
+      class="flex-col-center !justify-start h-[35rem] gap-5 overflow-auto p-4"
+    >
       <div
         v-if="filteredTodos.length"
         v-for="todo in filteredTodos"
