@@ -1,7 +1,7 @@
 export type Priority = "low" | "mid" | "high"
 
 export interface Todo {
-  id: number;
+  id: any;
   title: string;
   priority: Priority;
   description: string;
