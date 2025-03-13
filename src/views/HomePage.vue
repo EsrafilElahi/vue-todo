@@ -111,4 +111,3 @@ const onDelete = (id: number) => {
     <AppFooter />
   </div>
 </template>
-<style></style>
