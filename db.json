@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Gym",
+      "done": false,
+      "priority": "low"
+    },
+    {
+      "id": 2,
+      "title": "Tan",
+      "done": false,
+      "priority": "mid"
+    },
+    {
+      "id": 3,
+      "title": "Laundry",
+      "done": true,
+      "priority": "high"
+    },
+    {
+      "id": 4,
+      "title": "Grocery Shopping",
+      "done": false,
+      "priority": "low"
+    }
+  ]
+}

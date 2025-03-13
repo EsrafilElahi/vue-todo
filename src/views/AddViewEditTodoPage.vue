@@ -82,7 +82,6 @@ const todoData = ref({
       >
         back
       </button>
-      <button class="btn">cancel</button>
     </div>
   </div>
 </template>
