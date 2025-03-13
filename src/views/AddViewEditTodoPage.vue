@@ -2,7 +2,11 @@
 import { ref } from "vue";
 import { useRouter, useRoute, type RouteLocationNamedRaw } from "vue-router";
 import AppHeader from "../components/AppHeader.vue";
-import type { PriorityOption } from "../types/allTypes";
+import type {
+  PriorityOption,
+  QueryFrom,
+  QueryFromType,
+} from "../types/allTypes";
 const router = useRouter();
 const route = useRoute();
 
@@ -12,14 +16,14 @@ const priorityOptions = ref<PriorityOption[]>([
   { id: 3, label: "High", value: "high" },
 ]);
 
-const queryFrom = {
+const queryFrom: QueryFrom = {
   create: "Create",
   view: "View",
   edit: "Edit",
-  null: "",
 };
 
-const queryFromText = queryFrom[route.query?.from] || "Unknown";
+const fromQuery = route.query.from as QueryFromType;
+const queryFromText = queryFrom[fromQuery];
 
 const todoData = ref({
   title: "",

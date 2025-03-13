@@ -16,6 +16,13 @@ export interface PriorityOption {
   value: Priority
 }
 
+export type QueryFromType = 'create' | 'view' | 'edit';
+
+export type QueryFrom = {
+  [K in QueryFromType]: Capitalize<K>;
+};
+
+
 export interface TypeEmit {
   (e: "update:modelValue", value: string): void;
 }
