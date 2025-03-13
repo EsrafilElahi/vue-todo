@@ -8,10 +8,10 @@ export interface Todo {
   done: boolean;
 }
 
-export type FilterNames = 'all' | Priority
+export type FilterNames = 'all' | 'done' | Exclude<Priority, 'mid'>
 
 export interface PriorityOption {
-  id: number;
+  id: any;
   label: Capitalize<Priority>;
   value: Priority
 }
