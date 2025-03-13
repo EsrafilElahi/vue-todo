@@ -3,14 +3,20 @@ import { ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import AppHeader from "../components/AppHeader.vue";
 import type { PriorityOption } from "../types/allTypes";
-// const router = useRouter();
-// const route = useRoute();
+const router = useRouter();
+const route = useRoute();
 
 const priorityOptions = ref<PriorityOption[]>([
   { id: 1, label: "Low", value: "low" },
   { id: 2, label: "Mid", value: "mid" },
   { id: 3, label: "High", value: "high" },
 ]);
+
+const todoData = ref({
+  title: "",
+  priority: "",
+  description: "",
+});
 </script>
 
 <template>
@@ -19,22 +25,36 @@ const priorityOptions = ref<PriorityOption[]>([
 
     <div class="w-full flex-col-center gap-2">
       <label for="title">title</label>
-      <input class="border rounded p-2" name="title" placeholder="edit task" />
+      <input
+        v-model="todoData.title"
+        class="border rounded p-2"
+        name="title"
+        placeholder="edit task"
+      />
     </div>
 
     <div class="w-full flex-col-center gap-2">
       <label for="priority">priority</label>
-      <select class="border rounded p-2" name="priority">
+      <select
+        v-model="todoData.priority"
+        class="border rounded p-2"
+        name="priority"
+      >
         <option disabled value="">Please select one</option>
-        <option>Low</option>
-        <option>Mid</option>
-        <option>High</option>
+        <option
+          v-for="option in priorityOptions"
+          :value="option.value"
+          :key="option.id"
+        >
+          {{ option.label }}
+        </option>
       </select>
     </div>
 
     <div class="w-full flex-col-center gap-2">
       <label for="description">description</label>
       <textarea
+        v-model="todoData.description"
         class="border rounded p-2"
         placeholder="description"
         name="description"
@@ -43,7 +63,7 @@ const priorityOptions = ref<PriorityOption[]>([
 
     <div class="flex-center gap-4">
       <button class="btn">save</button>
-      <button class="btn">back</button>
+      <button class="btn" @click="router.back()">back</button>
       <button class="btn">cancel</button>
     </div>
   </div>
