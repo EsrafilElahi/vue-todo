@@ -23,8 +23,8 @@ export const createTodo = async (body: Todo) => {
   return response.data;
 }
 
-export const updateTodo = async (todo: Todo) => {
-  const response = await api.put(`/todos/${todo.id}`, todo);
+export const updateTodo = async (id: any, todo: Todo) => {
+  const response = await api.put(`/todos/${id}`, todo);
   return response.data;
 }
 
