@@ -19,6 +19,7 @@ const emit = defineEmits(["onDelete", "onEdit"]);
     @click.self.prevent="
       router.push({
         name: 'todo.view',
+        params: { todoId: todo.id },
         query: { from: 'view' },
       } as RouteLocationNamedRaw)
     "

@@ -3,11 +3,13 @@ import { ref, onMounted } from "vue";
 import { useRouter, useRoute, type RouteLocationNamedRaw } from "vue-router";
 import AppHeader from "../components/AppHeader.vue";
 import type {
+  Priority,
   PriorityOption,
   QueryFrom,
   QueryFromType,
+  Todo,
 } from "../types/allTypes";
-import { getTodo } from "../api/todosApi";
+import { getTodo, updateTodo } from "../api/todosApi";
 const router = useRouter();
 const route = useRoute();
 
@@ -26,16 +28,38 @@ const queryFrom: QueryFrom = {
 const fromQuery = route.query.from as QueryFromType;
 const queryFromText = queryFrom[fromQuery];
 
-const todoData = ref({
+const todoData = ref<Omit<Todo, "id">>({
   title: "",
   priority: "",
-  done: "",
+  done: false,
 });
+
+const handleSubmit = async () => {
+  const id = route.params.todoId;
+  const payload = { ...todoData.value, id: generateRandomId() };
+
+  if (queryFromText === "Create") {
+    return await updateTodo(id, payload);
+  } else if (queryFromText === "Edit") {
+    return await updateTodo(id, payload);
+  } else {
+    return router.push({ name: "todos" });
+  }
+};
+
+const generateRandomId = () => {
+  const min = 1;
+  const max = 1000;
+  const randomInteger = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  return randomInteger;
+};
+
+console.log(route.params.todoId);
 
 onMounted(async () => {
   const res = await getTodo(route.params.todoId);
   todoData.value = res;
-  console.log("res :", res);
 });
 </script>
 
@@ -46,6 +70,7 @@ onMounted(async () => {
     <div class="w-full flex-col-center gap-2">
       <label for="title">title</label>
       <input
+        :disabled="queryFromText === 'View'"
         v-model="todoData.title"
         class="border rounded p-2"
         name="title"
@@ -56,6 +81,7 @@ onMounted(async () => {
     <div class="w-full flex-col-center gap-2">
       <label for="priority">priority</label>
       <select
+        :disabled="queryFromText === 'View'"
         v-model="todoData.priority"
         class="border rounded p-2"
         name="priority"
@@ -73,11 +99,16 @@ onMounted(async () => {
 
     <div class="w-full flex-col-center gap-2">
       <label for="done">done</label>
-      <input v-model="todoData.done" name="done" type="checkbox" />
+      <input
+        :disabled="queryFromText === 'View'"
+        v-model="todoData.done"
+        name="done"
+        type="checkbox"
+      />
     </div>
 
     <div class="flex-center gap-4">
-      <button class="btn">{{ route.query.from }}</button>
+      <button @click="handleSubmit" class="btn">{{ route.query.from }}</button>
       <button
         class="btn"
         @click="router.push({ name: 'todos' } as RouteLocationNamedRaw)"
