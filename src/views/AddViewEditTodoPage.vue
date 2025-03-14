@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter, useRoute, type RouteLocationNamedRaw } from "vue-router";
 import AppHeader from "../components/AppHeader.vue";
 import type {
@@ -7,6 +7,7 @@ import type {
   QueryFrom,
   QueryFromType,
 } from "../types/allTypes";
+import { getTodo } from "../api/todosApi";
 const router = useRouter();
 const route = useRoute();
 
@@ -28,7 +29,13 @@ const queryFromText = queryFrom[fromQuery];
 const todoData = ref({
   title: "",
   priority: "",
-  description: "",
+  done: "",
+});
+
+onMounted(async () => {
+  const res = await getTodo(route.params.todoId);
+  todoData.value = res;
+  console.log("res :", res);
 });
 </script>
 
@@ -65,13 +72,8 @@ const todoData = ref({
     </div>
 
     <div class="w-full flex-col-center gap-2">
-      <label for="description">description</label>
-      <textarea
-        v-model="todoData.description"
-        class="border rounded p-2"
-        placeholder="description"
-        name="description"
-      ></textarea>
+      <label for="done">done</label>
+      <input v-model="todoData.done" name="done" type="checkbox" />
     </div>
 
     <div class="flex-center gap-4">
