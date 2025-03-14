@@ -18,12 +18,12 @@ export const getTodo = async (id: any) => {
   return response.data;
 }
 
-export const createTodo = async (body: Todo) => {
+export const createTodo = async (body: Omit<Todo, 'id'>) => {
   const response = await api.post('/todos', body);
   return response.data;
 }
 
-export const updateTodo = async (id: any, todo: Todo) => {
+export const updateTodo = async (id: any, todo: Omit<Todo, 'id'>) => {
   const response = await api.put(`/todos/${id}`, todo);
   return response.data;
 }

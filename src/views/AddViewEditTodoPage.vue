@@ -9,7 +9,7 @@ import type {
   QueryFromType,
   Todo,
 } from "../types/allTypes";
-import { getTodo, updateTodo } from "../api/todosApi";
+import { createTodo, getTodo, updateTodo } from "../api/todosApi";
 const router = useRouter();
 const route = useRoute();
 
@@ -36,30 +36,28 @@ const todoData = ref<Omit<Todo, "id">>({
 
 const handleSubmit = async () => {
   const id = route.params.todoId;
-  const payload = { ...todoData.value, id: generateRandomId() };
+  const payload = { ...todoData.value };
 
   if (queryFromText === "Create") {
-    return await updateTodo(id, payload);
+    return await createTodo(payload).then(() => {
+      return router.push({ name: "todos" });
+    });
   } else if (queryFromText === "Edit") {
-    return await updateTodo(id, payload);
+    return await updateTodo(id, payload).then(() => {
+      return router.push({ name: "todos" });
+    });
   } else {
     return router.push({ name: "todos" });
   }
 };
 
-const generateRandomId = () => {
-  const min = 1;
-  const max = 1000;
-  const randomInteger = Math.floor(Math.random() * (max - min + 1)) + min;
-
-  return randomInteger;
-};
-
 console.log(route.params.todoId);
 
 onMounted(async () => {
-  const res = await getTodo(route.params.todoId);
-  todoData.value = res;
+  if (queryFromText !== "Create") {
+    const res = await getTodo(route.params.todoId);
+    todoData.value = res;
+  }
 });
 </script>
 
