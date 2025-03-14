@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/todos', name: 'todos', component: HomePage },
   { path: '/todos/edit/:todoId', name: 'todo.edit', component: AddViewEditTodoPage },
   { path: '/todos/create', name: 'todo.create', component: AddViewEditTodoPage },
-  { path: '/todos/view', name: 'todo.view', component: AddViewEditTodoPage },
+  { path: '/todos/view/:todoId', name: 'todo.view', component: AddViewEditTodoPage },
   { path: '/:pathMatch(.*)*', name: 'notFound', component: () => import('../views/NotFoundPage.vue') },
 ]
 
