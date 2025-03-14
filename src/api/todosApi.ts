@@ -13,6 +13,11 @@ export const getTodos = async () => {
   return response.data;
 }
 
+export const getTodo = async (id: any) => {
+  const response = await api.get(`/todos/${id}`);
+  return response.data;
+}
+
 export const createTodo = async (body: Todo) => {
   const response = await api.post('/todos', body);
   return response.data;
