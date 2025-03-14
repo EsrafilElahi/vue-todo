@@ -51,8 +51,6 @@ const handleSubmit = async () => {
   }
 };
 
-console.log(route.params.todoId);
-
 onMounted(async () => {
   if (queryFromText !== "Create") {
     const res = await getTodo(route.params.todoId);
