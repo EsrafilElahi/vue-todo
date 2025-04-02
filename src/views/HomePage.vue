@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, useAttrs, watch, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import AppHeader from "../components/AppHeader.vue";
 import type { Todo, FilterNames } from "../types/allTypes.ts";
 import TodoItem from "../components/TodoItem.vue";

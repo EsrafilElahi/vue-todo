@@ -14,6 +14,9 @@ const model = defineModel();
 
 const props = defineProps<BaseInputProps>();
 // const emit = defineEmits<TypeEmit>();
+
+console.log('attrs :', attrs)
+console.log('props :', props)
 </script>
 
 <template>

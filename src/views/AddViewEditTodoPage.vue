@@ -3,7 +3,6 @@ import { ref, onMounted } from "vue";
 import { useRouter, useRoute, type RouteLocationNamedRaw } from "vue-router";
 import AppHeader from "../components/AppHeader.vue";
 import type {
-  Priority,
   PriorityOption,
   QueryFrom,
   QueryFromType,

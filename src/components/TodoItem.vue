@@ -10,6 +10,8 @@ const props = defineProps<{
   todo: Todo;
 }>();
 
+console.log(props)
+
 const emit = defineEmits(["onDelete", "onEdit"]);
 </script>
 
